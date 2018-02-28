@@ -3,10 +3,10 @@ import {
     Image, 
     Text, 
     View, 
-    StyleSheet, 
     ListView,
     TouchableHighlight,
 } from 'react-native';
+import styles from './style/styles'
 
 const REQUEST_URL = 'https://www.googleapis.com/books/v1/volumes?q=subject:fiction';
 
@@ -24,7 +24,7 @@ class BookList extends Component {
     componentDidMount() {
         this.fetchData();
     }
-     
+
     fetchData() {
         fetch(REQUEST_URL)
         .then((response) => response.json())
@@ -54,7 +54,9 @@ class BookList extends Component {
 
     renderBook(book) {
         return (
-            <TouchableHighlight>
+            <TouchableHighlight 
+                onPress={() => this.showBook(book)}
+            >
                 <View>
                     <View style={styles.container}>
                         <Image
@@ -80,44 +82,10 @@ class BookList extends Component {
             </View>
         );
     }
-}
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-        padding: 10
-    },
-    thumbnail: {
-        width: 53,
-        height: 81,
-        marginRight: 10
-    },
-    rightContainer: {
-        flex: 1
-    },
-    title: {
-        fontSize: 20,
-        marginBottom: 8
-    },
-    author: {
-        color: '#656565'
-    },
-    separator: {
-        height: 1,
-        backgroundColor: '#dddddd'
-    },
-    listView: {
-        backgroundColor: '#F5FCFF'
-    },
-    loading: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-    }
-});
+    showBook = (book) => {
+        this.props.navigation.navigate('Details', { ...book });
+    };
+}
 
 export default BookList

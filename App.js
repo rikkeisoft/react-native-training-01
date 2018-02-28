@@ -1,42 +1,28 @@
-import React, { Component } from 'react';
-import { ActivityIndicator, ListView, Text, View } from 'react-native';
-import TabNavigator from 'react-native-tab-navigator';
-import List from './src/list'
-import Search from './src/search'
+import React from 'react';
+import { Text, View } from 'react-native';
+import { TabNavigator } from 'react-navigation';
+import List from './src/list';
+import Search from './src/search';
 
-export default class BookSearch extends Component {
-
-  constructor(props) {
-      super(props);
-      this.state = {
-          selectedTab: 'list'
-      };
-  }
-
+class HomeScreen extends React.Component {
   render() {
-      return (
-          <TabNavigator selectedTab={this.state.selectedTab}>
-              <TabNavigator.Item
-                  selected={this.state.selectedTab === 'list'}
-                  title="Home"
-                  onPress={() => {
-                      this.setState({
-                          selectedTab: 'list'
-                      });
-                  }}>
-                  <List/>
-              </TabNavigator.Item>
-              <TabNavigator.Item
-                  selected={this.state.selectedTab === 'search'}
-                  title="Search"
-                  onPress={() => {
-                      this.setState({
-                          selectedTab: 'search'
-                      });
-                  }}>
-                  <Search/>
-              </TabNavigator.Item>
-          </TabNavigator>
-      );
+    return (
+        <List />
+    );
   }
 }
+
+class SearchScreen extends React.Component {
+  render() {
+    return (
+        <Search />
+    );
+  }
+}
+const Tabs = TabNavigator({
+    Home: { screen: HomeScreen },
+    Search: { screen: SearchScreen },
+  }, {
+    tabBarPosition: 'bottom',
+  });
+export default Tabs
