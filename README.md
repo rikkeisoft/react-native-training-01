@@ -1,2 +1,5 @@
-# react-native-training-01
-React Native training
+# React Native Training
+
+## Resources
+- Presentation: Updating...)
+- [Report](https://goo.gl/ANHed5)
