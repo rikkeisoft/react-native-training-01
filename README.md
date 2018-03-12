@@ -1,5 +1,5 @@
 # React Native Training
 
 ## Resources
-- Presentation: Updating...)
+- Presentation: Updating...
 - [Report](https://goo.gl/ANHed5)
